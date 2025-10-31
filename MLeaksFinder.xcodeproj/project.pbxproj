@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11CC16F22EB450B9001FDF27 /* MLCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CC16F12EB450B9001FDF27 /* MLCustomAlertView.m */; };
 		B32AAB321D767E59001485FF /* UITouch+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AAB311D767E59001485FF /* UITouch+MemoryLeak.m */; };
 		B3667E4E1D38ADF6002B55DE /* MLeakedObjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3667E4D1D38ADF6002B55DE /* MLeakedObjectProxy.m */; };
 		B3667E721D3BA78E002B55DE /* MLeaksMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = B3667E711D3BA78E002B55DE /* MLeaksMessenger.m */; };
@@ -38,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11CC16F02EB450B9001FDF27 /* MLCustomAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLCustomAlertView.h; sourceTree = "<group>"; };
+		11CC16F12EB450B9001FDF27 /* MLCustomAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLCustomAlertView.m; sourceTree = "<group>"; };
 		5E297F00748C1FFA737EEFB0 /* Pods-MLeaksFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLeaksFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLeaksFinder/Pods-MLeaksFinder.release.xcconfig"; sourceTree = "<group>"; };
 		6C69FD6BA6E3CCAC5168D790 /* libPods-MLeaksFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MLeaksFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EF182415984ED6E908B442 /* Pods-MLeaksFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLeaksFinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLeaksFinder/Pods-MLeaksFinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				B3ADE17F1C1BD4B200AA4F63 /* UIViewController+MemoryLeak.m */,
 				B32AAB301D767E59001485FF /* UITouch+MemoryLeak.h */,
 				B32AAB311D767E59001485FF /* UITouch+MemoryLeak.m */,
+				11CC16F02EB450B9001FDF27 /* MLCustomAlertView.h */,
+				11CC16F12EB450B9001FDF27 /* MLCustomAlertView.m */,
 			);
 			path = MLeaksFinder;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B3ADE1631C1BD1D600AA4F63;
@@ -236,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3C512C51CE3368B0032C2C8 /* UIApplication+MemoryLeak.m in Sources */,
+				11CC16F22EB450B9001FDF27 /* MLCustomAlertView.m in Sources */,
 				B3ADE17A1C1BD29600AA4F63 /* UIView+MemoryLeak.m in Sources */,
 				B3ADE1861C1BD5CC00AA4F63 /* UIPageViewController+MemoryLeak.m in Sources */,
 				B3667E4E1D38ADF6002B55DE /* MLeakedObjectProxy.m in Sources */,
