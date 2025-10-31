@@ -11,9 +11,9 @@
  */
 
 #import "MLeaksMessenger.h"
-#import "MLAlertView.h"
+#import <objc/message.h>
 
-static __weak MLAlertView *alertView;
+static __weak id alert;
 
 @implementation MLeaksMessenger
 
@@ -25,16 +25,40 @@ static __weak MLAlertView *alertView;
                message:(NSString *)message
  additionalButtonTitle:(NSString *)additionalButtonTitle
                handler:(void (^)(NSInteger buttonIndex))handler {
+    Class alertClass = NSClassFromString(@"BTAlertView");
+    if (alertClass) {
+        // 调用 alloc
+
+        // 调用 show
+        ((void (*)(id, SEL))objc_msgSend)(alert, @selector(dismiss));
+
+        alert = ((id (*)(id, SEL))objc_msgSend)(alertClass, @selector(alloc));
+
+        // 调用 initWithTitle:message:cancelButtonTitle:otherButtonTitles:
+        SEL initSel = NSSelectorFromString(@"initWithTitle:message:cancelButtonTitle:otherButtonTitles:");
+        alert = ((id (*)(id, SEL, id, id, id, id, id))objc_msgSend)(
+            alert,
+            initSel,
+            title,
+            message,
+            @"ok",
+            additionalButtonTitle,
+            nil
+        );
+
+        // 设置 block
+        void (^clickBlock)(NSInteger) = ^(NSInteger index) {
+            // 处理点击
+        };
+
+        SEL setBlockSel = NSSelectorFromString(@"setTitleButtonDidClickBlock:");
+        ((void (*)(id, SEL, id))objc_msgSend)(alert, setBlockSel, clickBlock);
+
+        // 调用 show
+        ((void (*)(id, SEL))objc_msgSend)(alert, @selector(show));
+    }
 
 
-    [alertView hide];
-
-    MLAlertView *alertViewTemp = [[MLAlertView alloc] initWithImage:nil title:title titleIcon:nil message:message cancelButtonTitle:@"OK" otherButtonTitles:additionalButtonTitle, nil];
-    [alertViewTemp show];
-    alertViewTemp.buttonAction = handler;
-    alertView = alertViewTemp;
-
-    NSLog(@"%@: %@", title, message);
 }
 
 
