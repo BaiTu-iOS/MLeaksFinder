@@ -20,6 +20,6 @@
 + (void)alertWithTitle:(NSString *)title
                message:(NSString *)message
  additionalButtonTitle:(NSString *)additionalButtonTitle
-               handler:(void (^)(NSUInteger buttonIndex))handler;
+               handler:(void (^)(NSInteger buttonIndex))handler;
 
 @end

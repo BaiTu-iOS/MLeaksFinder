@@ -11,9 +11,9 @@
  */
 
 #import "MLeaksMessenger.h"
-#import "MLCustomAlertView.h"
+#import "MLAlertView.h"
 
-static __weak MLCustomAlertView *alertView;
+static __weak MLAlertView *alertView;
 
 @implementation MLeaksMessenger
 
@@ -24,16 +24,14 @@ static __weak MLCustomAlertView *alertView;
 + (void)alertWithTitle:(NSString *)title
                message:(NSString *)message
  additionalButtonTitle:(NSString *)additionalButtonTitle
-               handler:(void (^)(NSUInteger buttonIndex))handler {
+               handler:(void (^)(NSInteger buttonIndex))handler {
 
 
-    [alertView dismiss];
-    NSMutableArray *otherButtonTitles = [NSMutableArray arrayWithCapacity:1];
-    [otherButtonTitles addObject:additionalButtonTitle];
+    [alertView hide];
 
-    MLCustomAlertView *alertViewTemp = [[MLCustomAlertView alloc] initWithTitle:title message:message cancelButtonTitle:@"OK" otherButtonTitles:otherButtonTitles];
+    MLAlertView *alertViewTemp = [[MLAlertView alloc] initWithImage:nil title:title titleIcon:nil message:message cancelButtonTitle:@"OK" otherButtonTitles:additionalButtonTitle, nil];
     [alertViewTemp show];
-    alertViewTemp.buttonHandler = handler;
+    alertViewTemp.buttonAction = handler;
     alertView = alertViewTemp;
 
     NSLog(@"%@: %@", title, message);

@@ -62,7 +62,7 @@ static NSMutableSet *leakedObjectPtrs;
     [leakedObjectPtrs addObject:proxy.objectPtr];
     
 #if _INTERNAL_MLF_RC_ENABLED
-    [MLeaksMessenger alertWithTitle:@"Memory Leak" message:[NSString stringWithFormat:@"%@", proxy.viewStack] additionalButtonTitle:@"Retain Cycle" handler:^(NSUInteger buttonIndex) {
+    [MLeaksMessenger alertWithTitle:@"Memory Leak" message:[NSString stringWithFormat:@"%@", proxy.viewStack] additionalButtonTitle:@"Retain Cycle" handler:^(NSInteger buttonIndex) {
         [proxy alertActionHandler];
     }];
 #else
