@@ -25,7 +25,7 @@ static NSString *ML_ALERT_CELL_ID = @"ML_ALERT_CELL_ID";
 
 @interface MLAlertView()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (strong, nonatomic) UIView *maskView;
+@property (strong, nonatomic) UIView *customMaskView;
 @property (strong, nonatomic) NSMutableArray *buttonTitles;
 @property (copy, nonatomic) NSString *cancelButtonTitle;
 @property (copy, nonatomic) NSString *title;
@@ -392,11 +392,11 @@ static NSString *ML_ALERT_CELL_ID = @"ML_ALERT_CELL_ID";
 
 - (void)show:(BOOL)animated
 {
-    _maskView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    [_maskView addSubview:self.customView];
-    self.customView.center = _maskView.center;
-    [self addSubview:_maskView];
+    _customMaskView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _customMaskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    [_customMaskView addSubview:self.customView];
+    self.customView.center = _customMaskView.center;
+    [self addSubview:_customMaskView];
     __weak typeof(self) weakSelf = self;
     [weakSelf.showWindow addSubview:self];
     [weakSelf.showWindow makeKeyAndVisible];
@@ -415,12 +415,12 @@ static NSString *ML_ALERT_CELL_ID = @"ML_ALERT_CELL_ID";
     [_customView removeFromSuperview];
     _customView = nil;
 
-    for (UIView *view in _maskView.subviews)
+    for (UIView *view in _customMaskView.subviews)
     {
         [view removeFromSuperview];
     }
-    [_maskView removeFromSuperview];
-    _maskView = nil;
+    [_customMaskView removeFromSuperview];
+    _customMaskView = nil;
     [self removeFromSuperview];
 }
 
