@@ -24,11 +24,29 @@ static const void *const kViewStackKey = &kViewStackKey;
 static const void *const kParentPtrsKey = &kParentPtrsKey;
 const void *const kLatestSenderKey = &kLatestSenderKey;
 
+@interface NSObject (MemoryLeakPrivate)
+
++ (NSMutableSet *)classNamesWhitelist;
+
+@end
+
+static BOOL MLFShouldIgnoreLeakCheck(id object, NSString *className) {
+    if ([[NSObject classNamesWhitelist] containsObject:className]) {
+        return YES;
+    }
+
+    if ([object isKindOfClass:[UITextField class]] || [object isKindOfClass:[UITextView class]]) {
+        return YES;
+    }
+
+    return NO;
+}
+
 @implementation NSObject (MemoryLeak)
 
 - (BOOL)willDealloc {
     NSString *className = NSStringFromClass([self class]);
-    if ([[NSObject classNamesWhitelist] containsObject:className])
+    if (MLFShouldIgnoreLeakCheck(self, className))
         return NO;
     
     NSNumber *senderPtr = objc_getAssociatedObject([UIApplication sharedApplication], kLatestSenderKey);
