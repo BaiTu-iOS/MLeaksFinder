@@ -56,6 +56,14 @@ static NSMutableSet *leakedObjectPtrs;
     proxy.object = object;
     proxy.objectPtr = @((uintptr_t)object);
     proxy.viewStack = [object viewStack];
+    
+    // 当告警内容（View-ViewController stack）中包含 TextView、TextField 时，认为是误报，直接过滤掉，不弹窗。
+    NSString *stackString = [NSString stringWithFormat:@"%@", proxy.viewStack];
+    if ([stackString rangeOfString:@"TextView" options:NSCaseInsensitiveSearch].location != NSNotFound ||
+        [stackString rangeOfString:@"TextField" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        return;
+    }
+    
     static const void *const kLeakedObjectProxyKey = &kLeakedObjectProxyKey;
     objc_setAssociatedObject(object, kLeakedObjectProxyKey, proxy, OBJC_ASSOCIATION_RETAIN);
     
