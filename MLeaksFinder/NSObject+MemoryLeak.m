@@ -155,6 +155,7 @@ static BOOL MLFShouldIgnoreLeakCheck(id object, NSString *className) {
 
 + (void)swizzleSEL:(SEL)originalSEL withSEL:(SEL)swizzledSEL {
 #if _INTERNAL_MLF_ENABLED
+    if ([NSProcessInfo.processInfo.arguments containsObject:@"-UITest"]) return;
     
 #if _INTERNAL_MLF_RC_ENABLED
     // Just find a place to set up FBRetainCycleDetector.
